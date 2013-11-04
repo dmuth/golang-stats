@@ -1,5 +1,3 @@
-
-
 package stats
 
 import "fmt" // Debugging
@@ -27,14 +25,14 @@ func initData(key string) {
 
 /**
 * Increment a stat.
-*/
+ */
 func IncrStat(key string) {
 	AddStat(key, 1)
 }
 
 /**
 * Increment a key by a specified value.
-*/
+ */
 func AddStat(key string, value int) {
 	initData(key)
 	data[key] += value
@@ -42,14 +40,14 @@ func AddStat(key string, value int) {
 
 /**
 * Decrement a stat.
-*/
+ */
 func DecrStat(key string) {
 	SubStat(key, 1)
 }
 
 /**
 * Decrement a key by a specified value.
-*/
+ */
 func SubStat(key string, value int) {
 	initData(key)
 	data[key] -= value
@@ -57,29 +55,28 @@ func SubStat(key string, value int) {
 
 /**
 * Grab the value of a specific key.
-*/
-func Stat(key string) (int) {
+ */
+func Stat(key string) int {
 	initData(key)
-	return(data[key])
+	return (data[key])
 }
-
 
 /**
 * Get stats for all keys.
-*/
-func StatAll() (map[string]int) {
-	return(data)
+ */
+func StatAll() map[string]int {
+	return (data)
 }
 
 /**
-* Fire our callback every specified interval, presumably to print out 
+* Fire our callback every specified interval, presumably to print out
 * our stats (or dump them to a database or whatever).
 *
 * @param {float64} interval How many seconds between runs
 * @param {func} cb The function to call.
 *
-*/
-func StatsDumpFunc(interval float64, cb func(data map[string]int) ) {
+ */
+func StatsDumpFunc(interval float64, cb func(data map[string]int)) {
 
 	seconds_string := fmt.Sprintf("%f", interval)
 	duration, _ := time.ParseDuration(seconds_string + "s")
@@ -91,14 +88,13 @@ func StatsDumpFunc(interval float64, cb func(data map[string]int) ) {
 
 } // End of StatsDumpFunc()
 
-
 /**
 * Dump stats periodically.  This is a wrapper for StatsDumpFunc() with
 * a built in callback to print to stdout.
 *
 * @param {float64} interval How many seconds between runs
 *
-*/
+ */
 func StatsDump(interval float64) {
 
 	StatsDumpFunc(interval, func(data map[string]int) {
@@ -106,5 +102,3 @@ func StatsDump(interval float64) {
 	})
 
 } // End of StatsDump()
-
-

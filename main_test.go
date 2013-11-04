@@ -1,4 +1,3 @@
-
 package stats
 
 //import "fmt"
@@ -52,4 +51,3 @@ func TestMain(t *testing.T) {
 	}
 
 }
-
