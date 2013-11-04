@@ -76,7 +76,7 @@ func StatAll() map[string]int {
 * @param {func} cb The function to call.
 *
  */
-func StatsDumpFunc(interval float64, cb func(data map[string]int)) {
+func StatDumpFunc(interval float64, cb func(data map[string]int)) {
 
 	seconds_string := fmt.Sprintf("%f", interval)
 	duration, _ := time.ParseDuration(seconds_string + "s")
@@ -95,10 +95,12 @@ func StatsDumpFunc(interval float64, cb func(data map[string]int)) {
 * @param {float64} interval How many seconds between runs
 *
  */
-func StatsDump(interval float64) {
+func StatDump(interval float64) {
 
-	StatsDumpFunc(interval, func(data map[string]int) {
+	StatDumpFunc(interval, func(data map[string]int) {
 		fmt.Println("StatsDump():", data)
 	})
 
 } // End of StatsDump()
+
+
